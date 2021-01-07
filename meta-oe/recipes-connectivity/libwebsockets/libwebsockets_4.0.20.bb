@@ -1,13 +1,16 @@
 SUMMARY = "Canonical libwebsockets.org websocket library"
 HOMEPAGE = "https://libwebsockets.org/"
-LICENSE = "LGPL-2.1"
-LIC_FILES_CHKSUM = "file://LICENSE;md5=4ce87f3facb6f911c142c8bef9bfb380"
+LICENSE = "MIT & Zlib & BSD-3-Clause"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=8c47b078124308a4e1354e8d59f606b7"
 
 DEPENDS = "zlib"
 
 S = "${WORKDIR}/git"
-SRCREV = "94931cad003faf9d316e698b557bbb6d245f1f91"
-SRC_URI = "git://github.com/warmcat/libwebsockets.git;protocol=https;branch=v3.2-stable"
+SRCREV = "ec9e8ab892f2dc569ae09336c80c2796fd14a6ff"
+SRC_URI = "git://github.com/warmcat/libwebsockets.git;protocol=https;branch=v4.0-stable"
+
+UPSTREAM_CHECK_URI = "https://github.com/warmcat/${BPN}/releases"
+UPSTREAM_CHECK_GITTAGREGEX = "v(?P<pver>\d+(\.\d+)+)"
 
 inherit cmake pkgconfig
 
