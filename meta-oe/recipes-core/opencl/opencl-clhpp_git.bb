@@ -6,8 +6,8 @@ SRC_URI = "git://github.com/KhronosGroup/OpenCL-CLHPP.git;protocol=https"
 LICENSE  = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=3b83ef96387f14655fc854ddc3c6bd57"
 
-PV = "2.0.11+git${SRCPV}"
-SRCREV = "432b551429b362a877ed9b647b7114022b332be0"
+PV = "2.0.15+git${SRCPV}"
+SRCREV = "f7237f3799009d856935e1eecfd7c9301fe522b4"
 
 S = "${WORKDIR}/git"
 
@@ -20,4 +20,4 @@ EXTRA_OECMAKE = " \
                   "
 
 # Headers only so PN is empty
-RDEPENDS_${PN}-dev = ""
+RDEPENDS:${PN}-dev = ""

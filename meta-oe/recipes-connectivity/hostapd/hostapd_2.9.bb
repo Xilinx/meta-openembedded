@@ -11,6 +11,7 @@ SRC_URI = " \
     file://defconfig \
     file://init \
     file://hostapd.service \
+    file://0001-Prepare-for-CVE-2021-30004.patch.patch \
     file://CVE-2019-16275.patch \
     file://CVE-2019-5061.patch \
     file://CVE-2021-0326.patch \
@@ -30,10 +31,10 @@ CONFLICT_DISTRO_FEATURES = "openssl-no-weak-ciphers"
 
 INITSCRIPT_NAME = "hostapd"
 
-SYSTEMD_SERVICE_${PN} = "hostapd.service"
-SYSTEMD_AUTO_ENABLE_${PN} = "disable"
+SYSTEMD_SERVICE:${PN} = "hostapd.service"
+SYSTEMD_AUTO_ENABLE:${PN} = "disable"
 
-do_configure_append() {
+do_configure:append() {
     install -m 0644 ${WORKDIR}/defconfig ${B}/.config
 }
 
@@ -53,4 +54,4 @@ do_install() {
     sed -i -e 's,@SBINDIR@,${sbindir},g' -e 's,@SYSCONFDIR@,${sysconfdir},g' ${D}${systemd_unitdir}/system/hostapd.service
 }
 
-CONFFILES_${PN} += "${sysconfdir}/hostapd.conf"
+CONFFILES:${PN} += "${sysconfdir}/hostapd.conf"

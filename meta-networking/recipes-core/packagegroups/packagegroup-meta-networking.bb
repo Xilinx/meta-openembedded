@@ -17,7 +17,7 @@ PACKAGES = ' \
     packagegroup-meta-networking-support \
 '
 
-RDEPENDS_packagegroup-meta-networking = "\
+RDEPENDS:packagegroup-meta-networking = "\
     packagegroup-meta-networking-connectivity \
     packagegroup-meta-networking-daemons  \
     packagegroup-meta-networking-devtools \
@@ -30,7 +30,7 @@ RDEPENDS_packagegroup-meta-networking = "\
     packagegroup-meta-networking-support \
     "
 
-RDEPENDS_packagegroup-meta-networking-connectivity = "\
+RDEPENDS:packagegroup-meta-networking-connectivity = "\
     crda \
     daq \
     adcli \
@@ -67,11 +67,12 @@ RDEPENDS_packagegroup-meta-networking-connectivity = "\
     wolfssl \
     autossh \
     bearssl \
+    dhcp-relay \
 "
 
-RDEPENDS_packagegroup-meta-networking-connectivity_remove_libc-musl = "rdist"
+RDEPENDS:packagegroup-meta-networking-connectivity:remove:libc-musl = "rdist"
 
-RDEPENDS_packagegroup-meta-networking-daemons = "\
+RDEPENDS:packagegroup-meta-networking-daemons = "\
     atftp \
     autofs \
     cyrus-sasl \
@@ -96,22 +97,24 @@ RDEPENDS_packagegroup-meta-networking-daemons = "\
     opensaf \
 "
 
-RDEPENDS_packagegroup-meta-networking-daemons_remove_libc-musl = "opensaf"
+RDEPENDS:packagegroup-meta-networking-daemons:remove:libc-musl = "opensaf"
 
-RDEPENDS_packagegroup-meta-networking-devtools = "\
+RDEPENDS:packagegroup-meta-networking-devtools = "\
     python3-ldap \
+    python3-scapy \
 "
 
-RDEPENDS_packagegroup-meta-networking-extended = "\
+RDEPENDS:packagegroup-meta-networking-extended = "\
     corosync \
     ${@bb.utils.contains("DISTRO_FEATURES", "systemd", "dlm", "", d)} \
     kronosnet \
 "
 
-RDEPENDS_packagegroup-meta-networking-filter = "\
+RDEPENDS:packagegroup-meta-networking-filter = "\
     libnftnl \
     conntrack-tools \
     ebtables \
+    ipset \
     libnetfilter-acct \
     libnetfilter-conntrack \
     libnetfilter-cthelper \
@@ -124,16 +127,16 @@ RDEPENDS_packagegroup-meta-networking-filter = "\
     nftables \
 "
 
-RDEPENDS_packagegroup-meta-networking-irc = "\
+RDEPENDS:packagegroup-meta-networking-irc = "\
     weechat \
     znc \
 "
 
-RDEPENDS_packagegroup-meta-networking-kernel = "\
+RDEPENDS:packagegroup-meta-networking-kernel = "\
     wireguard-tools \
 "
 
-RDEPENDS_packagegroup-meta-networking-netkit = "\
+RDEPENDS:packagegroup-meta-networking-netkit = "\
     netkit-rwho-client \
     netkit-rwho-server \
     netkit-rsh-client \
@@ -145,10 +148,10 @@ RDEPENDS_packagegroup-meta-networking-netkit = "\
     netkit-rpc \
     "
 
-RDEPENDS_packagegroup-meta-networking-netkit_remove_libc-musl = " \
+RDEPENDS:packagegroup-meta-networking-netkit:remove:libc-musl = " \
     netkit-rsh-client netkit-rsh-server netkit-telnet"
 
-RDEPENDS_packagegroup-meta-networking-protocols = "\
+RDEPENDS:packagegroup-meta-networking-protocols = "\
     babeld \
     ${@bb.utils.contains("DISTRO_FEATURES", "pam", "dante", "", d)} \
     freediameter \
@@ -169,11 +172,12 @@ RDEPENDS_packagegroup-meta-networking-protocols = "\
     xl2tpd \
 "
 
-RDEPENDS_packagegroup-meta-networking-protocols_remove_libc-musl = "mdns"
+RDEPENDS:packagegroup-meta-networking-protocols:remove:libc-musl = "mdns"
 
-RDEPENDS_packagegroup-meta-networking-support = "\
+RDEPENDS:packagegroup-meta-networking-support = "\
     aoetools \
     arptables \
+    bmon \
     bridge-utils \
     celt051 \
     cim-schema-docs \
@@ -191,6 +195,7 @@ RDEPENDS_packagegroup-meta-networking-support = "\
     geoipupdate \
     fwknop \
     htpdate \
+    http-parser \
     iftop \
     ifmetric \
     ipvsadm \
@@ -220,6 +225,7 @@ RDEPENDS_packagegroup-meta-networking-support = "\
     macchanger \
     nbdkit \
     ssmping \
+    libmaxminddb \
     libowfat \
     ncp \
     strongswan \
@@ -232,7 +238,8 @@ RDEPENDS_packagegroup-meta-networking-support = "\
     traceroute \
     tunctl \
     wireshark \
-    ntop \
+    ndpi \
+    ntopng \
     nuttcp \
     nvmetcli \
     open-isns \
@@ -254,7 +261,7 @@ RDEPENDS_packagegroup-meta-networking-support = "\
     wpan-tools \
     ettercap \
 "
-RDEPENDS_packagegroup-meta-networking-support_remove_mipsarch = "memcached"
+RDEPENDS:packagegroup-meta-networking-support:remove:mipsarch = "memcached"
 
 EXCLUDE_FROM_WORLD = "1"
 # Empty packages, only devel headers and libs

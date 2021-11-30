@@ -9,8 +9,8 @@ DEPENDS += "opencl-headers"
 inherit pkgconfig cmake
 
 S = "${WORKDIR}/git"
-PV = "2020.06.16+git${SRCPV}"
-SRCREV = "862eebe7ca733c398334a8db8481172a7d3a3c47"
+PV = "2020.12.18+git${SRCPV}"
+SRCREV = "1d5315c3ed30d026acb79a1aa53a276fc833ffa7"
 SRC_URI = "git://github.com/KhronosGroup/OpenCL-ICD-Loader.git"
 
 do_install () {
@@ -31,17 +31,17 @@ PACKAGES = "opencl-icd-loader opencl-icd-loader-dev"
 PACKAGES += "libicdlog libicdlog-dbg"
 PACKAGE_DEBUG_SPLIT_STYLE = "debug-without-src"
 
-FILES_${PN} = " \
+FILES:${PN} = " \
 	${bindir}/icd_loader_test \
 	${libdir}/libOpenCLDriverStub.so \
 	${libdir}/libOpenCL.so.1.2 \
 "
-FILES_${PN}-dev = " \
+FILES:${PN}-dev = " \
 	${libdir}/libOpenCL.so \
 	${libdir}/libOpenCL.so.1 \
 "
 
-FILES_libicdlog = "${libdir}/libIcdLog.so"
-FILES_libicdlog-dbg = "${libdir}/.debug/libIcdLog.so"
+FILES:libicdlog = "${libdir}/libIcdLog.so"
+FILES:libicdlog-dbg = "${libdir}/.debug/libIcdLog.so"
 
-RDEPENDS_${PN} = "libicdlog"
+RDEPENDS:${PN} = "libicdlog"

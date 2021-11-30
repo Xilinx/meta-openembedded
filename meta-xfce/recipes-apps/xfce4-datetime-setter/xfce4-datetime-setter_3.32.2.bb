@@ -13,10 +13,10 @@ SRCREV = "5c7a73a3824b03b91719e05e2604b97c7a72d50f"
 
 S = "${WORKDIR}/git"
 
-inherit gettext meson features_check
+inherit gettext meson features_check pkgconfig
 
 REQUIRED_DISTRO_FEATURES = "systemd x11"
 
-FILES_${PN} += "${datadir}/icons/hicolor"
+FILES:${PN} += "${datadir}/icons/hicolor"
 
-RDEPENDS_${PN} = "tzdata"
+RDEPENDS:${PN} = "tzdata"

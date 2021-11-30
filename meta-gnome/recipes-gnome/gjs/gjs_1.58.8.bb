@@ -12,25 +12,31 @@ DEPENDS = "mozjs gtk+3"
 inherit gnomebase gsettings gobject-introspection vala gettext features_check upstream-version-is-even
 
 SRC_URI[archive.sha256sum] = "7fb3eb746c17363d9ee47f4a5d0bb048f0075611763eb0da11d85e0e57aff381"
-SRC_URI += "file://0001-Disable-tests-on-host.patch"
+SRC_URI += "file://0001-Disable-tests-on-host.patch \
+            file://0001-maint-Avoid-g_once_init_enter-error-in-GCC-11.patch \
+"
 
 # gobject-introspection is mandatory and cannot be configured
 REQUIRED_DISTRO_FEATURES = "gobject-introspection-data"
-UNKNOWN_CONFIGURE_WHITELIST_append = " --enable-introspection --disable-introspection"
+UNKNOWN_CONFIGURE_WHITELIST:append = " --enable-introspection --disable-introspection"
 
 EXTRA_OECONF = " \
     --without-dbus-tests \
     --disable-installed-tests \
 "
 
-do_configure_prepend() {
+do_configure:prepend() {
     # make configure find gobject-introspection test code. Although we set
     # --disable-installed-tests gjs builds them
     sed -i 's|:$GI_DATADIR|:${STAGING_DIR_NATIVE}$GI_DATADIR|g' ${S}/configure.ac
 }
 
-FILES_${PN} += "${datadir}/gjs-1.0/lsan"
+FILES:${PN} += "${datadir}/gjs-1.0/lsan"
 
 PACKAGES =+ "${PN}-valgrind"
-FILES_${PN}-valgrind = "${datadir}/gjs-1.0/valgrind"
-RSEPENDS_${PN}-valgrind += "valgrind"
+FILES:${PN}-valgrind = "${datadir}/gjs-1.0/valgrind"
+RDEPENDS:${PN}-valgrind += "valgrind"
+
+# Valgrind not yet available on rv32/rv64
+RDEPENDS:${PN}-valgrind:remove:riscv32 = "valgrind"
+RDEPENDS:${PN}-valgrind:remove:riscv64 = "valgrind"

@@ -13,7 +13,18 @@ SRC_URI[sha256sum] = "9feb068e822be7b3a116324e01fb6028eb1d66412bf98595ae72698965
 
 DEPENDS += "${PYTHON_PN}-pytest-runner-native"
 
-RDEPENDS_${PN} = "\
+do_install:append() {
+        install -d -m0755 ${D}${datadir}/${BPN}/examples
+        cp --preserve=mode,timestamps -R ${S}/examples/* ${D}${datadir}/${BPN}/examples
+}
+
+PACKAGES =+ "${PN}-examples"
+
+RDEPENDS:${PN}-examples += "${PN}"
+
+FILES:${PN}-examples = "${datadir}/${BPN}/examples"
+
+RDEPENDS:${PN} = "\
     ${PYTHON_PN}-io \
     ${PYTHON_PN}-logging \
     ${PYTHON_PN}-math \

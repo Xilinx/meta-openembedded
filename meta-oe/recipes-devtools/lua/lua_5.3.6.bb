@@ -8,7 +8,6 @@ SRC_URI = "http://www.lua.org/ftp/lua-${PV}.tar.gz;name=tarballsrc \
            file://lua.pc.in \
            file://0001-Allow-building-lua-without-readline-on-Linux.patch \
            file://CVE-2020-15888.patch \
-           file://CVE-2020-15945.patch \
            file://0001-Fixed-bug-barriers-cannot-be-active-during-sweep.patch \
            "
 
@@ -30,13 +29,10 @@ inherit pkgconfig binconfig ptest
 PACKAGECONFIG ??= "readline"
 PACKAGECONFIG[readline] = ",,readline"
 
-UCLIBC_PATCHES += "file://uclibc-pthread.patch"
-SRC_URI_append_libc-uclibc = "${UCLIBC_PATCHES}"
-
 TARGET_CC_ARCH += " -fPIC ${LDFLAGS}"
 EXTRA_OEMAKE = "'CC=${CC} -fPIC' 'MYCFLAGS=${CFLAGS} -fPIC' MYLDFLAGS='${LDFLAGS}'"
 
-do_configure_prepend() {
+do_configure:prepend() {
     sed -i -e s:/usr/local:${prefix}:g src/luaconf.h
     sed -i -e s:lib/lua/:${baselib}/lua/:g src/luaconf.h
 }

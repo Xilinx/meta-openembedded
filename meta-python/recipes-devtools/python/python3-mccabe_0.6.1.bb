@@ -1,5 +1,5 @@
 DESCRIPTION = "McCabe checker, plugin for flake8"
-HOMEPAGE = "https://github.com/dreamhost/cliff"
+HOMEPAGE = "https://github.com/PyCQA/mccabe"
 SECTION = "devel/python"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=a489dc62bacbdad3335c0f160a974f0f"
@@ -11,7 +11,7 @@ inherit pypi setuptools3
 
 DEPENDS += "${PYTHON_PN}-pytest-runner-native"
 
-RDEPENDS_${PN} += "${PYTHON_PN}-prettytable \
+RDEPENDS:${PN} += "${PYTHON_PN}-prettytable \
             ${PYTHON_PN}-cmd2 \
             ${PYTHON_PN}-pyparsing \
            "

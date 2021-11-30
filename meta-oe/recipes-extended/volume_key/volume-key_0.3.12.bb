@@ -16,7 +16,7 @@ SRC_URI[sha256sum] = "6ca3748fc1dad22c450bbf6601d4e706cb11c5e662d11bb4aeb473a9cd
 SRCNAME = "volume_key"
 S = "${WORKDIR}/${SRCNAME}-${PV}"
 
-inherit autotools python3native gettext
+inherit autotools python3native gettext pkgconfig
 
 DEPENDS += " \
     util-linux \
@@ -32,7 +32,7 @@ PACKAGECONFIG[python3] = "--with-python3,--without-python3,python3,python3"
 
 EXTRA_OECONF = "--without-python"
 
-RDEPENDS_python3-${BPN} += "${PN}"
+RDEPENDS:python3-${BPN} += "${PN}"
 
 PACKAGES += "python3-${BPN}"
-FILES_python3-${BPN} = "${PYTHON_SITEPACKAGES_DIR}/*"
+FILES:python3-${BPN} = "${PYTHON_SITEPACKAGES_DIR}/*"

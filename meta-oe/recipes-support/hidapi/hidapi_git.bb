@@ -7,10 +7,13 @@ LICENSE = "BSD-3-Clause | GPLv3"
 LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=7c3949a631240cb6c31c50f3eb696077"
 
 DEPENDS = "libusb udev"
+RDEPENDS:${PN}:append:libc-glibc = " glibc-gconv-utf-16"
 
 inherit autotools pkgconfig
 
-SRC_URI = "git://github.com/libusb/hidapi.git;protocol=https"
-PV = "0.10.0"
-SRCREV = "302d1f24018d5a4a480f92a72307616f88d97651"
+SRC_URI = "git://github.com/libusb/hidapi.git;protocol=https \
+           file://0001-configure.ac-remove-duplicate-AC_CONFIG_MACRO_DIR-22.patch \
+"
+PV = "0.10.1"
+SRCREV = "f6d0073fcddbdda24549199445e844971d3c9cef"
 S = "${WORKDIR}/git"

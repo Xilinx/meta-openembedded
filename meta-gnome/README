@@ -2,17 +2,15 @@ Dependencies
 ------------
 This layer depends on:
 
-URI: git://github.com/openembedded/oe-core.git
-branch: gatesgarth
-revision: HEAD
+URI: git://git.openembedded.org/openembedded-core
+branch: honister
 
-URI: git://github.com/openembedded/meta-oe.git
-branch: gatesgarth
-revision: HEAD
+URI: git://git.openembedded.org/meta-openembedded
+branch: honister
 
-Send pull requests to openembedded-devel@lists.openembedded.org with '[meta-gnome][gatesgarth]' in the subject'
+Send pull requests to openembedded-devel@lists.openembedded.org with '[meta-gnome][honister]' in the subject'
 
 When sending single patches, please using something like:
-'git send-email -M -1 --to openembedded-devel@lists.openembedded.org --subject-prefix=meta-gnome][gatesgarth][PATCH'
+git send-email -M -1 --to openembedded-devel@lists.openembedded.org --subject-prefix='meta-gnome][honister][PATCH'
 
-maintainer: Armin Kuster <akuster808@gmail.com>
+Stable Branch maintainer: Armin Kuster <akuster808@gmail.com>

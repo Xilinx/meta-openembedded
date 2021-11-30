@@ -17,21 +17,18 @@ Dependencies
 
 This layer depends on:
 
-URI: git://github.com/openembedded/openembedded-core.git
-branch: gatesgarth
-revision: HEAD
+URI: git://git.openembedded.org/openembedded-core
+branch: honister
 
 For some recipes, the meta-oe layer is required:
 
-URI: git://github.com/openembedded/meta-openembedded.git
+URI: git://git.openembedded.org/meta-openembedded
 subdirectory: meta-oe
-branch: gatesgarth
-revision: HEAD
+branch: honister
 
-URI: git://github.com/openembedded/meta-openembedded.git
+URI: git://git.openembedded.org/meta-openembedded
 subdirectory: meta-python
-branch: gatesgarth
-revision: HEAD
+branch: honister
 
 Maintenance
 -----------
